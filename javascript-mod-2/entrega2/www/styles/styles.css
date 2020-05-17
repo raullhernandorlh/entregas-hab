@@ -69,27 +69,29 @@ main{
 }
 
 #principal{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px,1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   width:80%;
-  gap:10px; 
-
 }
 
 aside{
   width: 20%;
-  background-color:lightblue;
+  background-color:#1E1E24;
+  display:flex;
+  flex-direction: column;
 }
 
 .hotel{
-  border: 1px solid white;
-  margin:20px;
-  max-width: 420px;
-  min-height: 650px;
-  display:flex;
-  flex-direction: column;
-  padding:20px;
-  margin:50px;
+  border: 1px solid #ffffff;
+    margin: 10px;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .hotel .hotel-image{
@@ -100,15 +102,16 @@ aside{
 }
 
 .hotel .hotel-image img{
-  width:  240px;
-  height: 240px;
-  margin: 20px 20px 40px 20px;
+  display: block;
+  margin-top: 20px;
   animation:  fadeEnter 0.5s  ease-in-out 0.2s;
 }
 
 .hotel .hotel-data{
 
-  margin:10px;
+  display: inline-block;
+  padding: 20px;
+  flex: 1 1 auto;
   flex-grow: 1;
 }
 
@@ -124,6 +127,7 @@ aside{
 .hotel .hotel-data h3{
   font-family: 'DJBBellyButton-Innie-Bold', Courier, monospace; 
   color:#D42740;
+  text-align:center;
   font-size: 19px;
   text-transform: uppercase;
   margin: auto auto 7px auto;
@@ -132,34 +136,99 @@ aside{
 .hotel .hotel-data p{
   color: white;
   text-align: justify;
-  margin: 0px auto 30% auto;
+  margin: 5%s auto 25% auto;
   font-size: 25px;
 }
 
 .boton-card{
+  background-color: #D7263D;
+  color: #fff;
+  display: block;
+  font-family: 'Pontano Sans', sans-serif;
+  font-size: 20px;
+  padding: 14px;
   text-align: center;
-  color: white;
-  background-color: #D42740;
-  width: 100%;
-  border: 0;
+  text-decoration: none;
+  text-transform: uppercase;
   flex-grow: 0;
-  height: 4vh;
+  cursor:pointer;
+ 
 }
 
 boton-card p{
   font-family: 'Macopah', Courier, monospace; 
 }
 
+/* HOTEL -CARD STYLES */
 
-footer{
-  background-color: #D42740;
-  color: black;
-  width:auto;
+
+#booking-title{
+  text-align:center;
+  color: #D42740;
 }
 
-footer p{
-  text-align: center;
+#hotel-card div{
+  display:flex;
+  flex-direction: column;
+  border: 1px solid white;
+  margin: 20px;
+  padding:15px;
+}
+
+
+
+#hotel-card div img{
+  margin : 20px 20px 20px 40px;  ;
+}
+
+.cardtitle{
+  font-family: 'EncodeSansCompressed-Bold', Courier, monospace;
+  font-size:25px;
   color:white;
+  text-align: center  ;
+}
+
+.cardprice{
+  font-family: 'DJBBellyButton-Innie-Bold', Courier, monospace;
+  color:#D42740;
+  text-align:center;
+}
+
+.delete{
+  margin-left: auto;
+  margin-right:auto;
+  width:50%;
+  height:20%;
+  border-radius:50%;
+  background-color: #D42740;
+  color:white;
+  cursor:pointer;
+}
+
+#remove-all button{
+  width:auto;
+  height:50px;
+  background-color: #D42740;
+  color:white;
+  margin-left:29%;
+  margin-right:auto;
+  padding:5px;
+  cursor:pointer;
+  border-radius: 50%;
+  padding:5px;
+
+}
+
+
+footer{
+  background-color: #D7263D;
+  padding: 2px;
+  text-align: center;
+  color: white;
+}
+
+footer h2{
+  text-align: center;
 }
 
 
@@ -215,7 +284,6 @@ footer p{
     margin-left: 15px;
 
 }
-
 
 /* ANIMACIONES */
 @keyframes fadeEnter{

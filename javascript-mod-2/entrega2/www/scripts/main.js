@@ -8,8 +8,6 @@ const card = document.getElementById("hotel-card");
 const removeButton = document.getElementById("remove-all");
 
 
-
-
 // Funciones
 
 
@@ -17,7 +15,7 @@ const eliminarReservas = () =>{
     
     localStorage.clear();
     const reservas = cargarLocalStorage() || [];
-     crearReserva(reservas);
+    crearReserva(reservas);
 
 }
 
@@ -26,15 +24,18 @@ const crearReserva = reservas =>{
     card.innerHTML ="";
     reservas.forEach((reserva,i) =>{
         const div = document.createElement('div');
+        div.classList = "divhotelcard";
         const img = document.createElement('img');
         img.src = reserva.photo;
         const title = document.createElement('p');
         title.textContent = reserva.name;
+        title.classList ="cardtitle";
         const price = document.createElement('p');
         price.textContent = reserva.price;
+        price.classList = "cardprice";
         const buttonDelete = document.createElement('button');
         buttonDelete.classList = "delete";
-        buttonDelete.textContent = 'x';
+        buttonDelete.textContent = 'Delete Booking';
         buttonDelete.addEventListener("click",() => borrarLocalStorage(i));
         div.appendChild(img);
         div.appendChild(title);
@@ -43,6 +44,7 @@ const crearReserva = reservas =>{
         card.appendChild(div);
     })
 }
+
 
 const borrarLocalStorage = indice =>{
     const reservas = cargarLocalStorage();
