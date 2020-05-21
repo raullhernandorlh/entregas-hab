@@ -1,0 +1,18 @@
+{
+  "name": "prestamohipoteca",
+  "version": "1.0.0",
+  "description": "Calculo Amortizacion Hipoteca",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hipoteca",
+    "amortizacion"
+  ],
+  "author": "Raul Lopez Hernando",
+  "license": "ISC",
+  "dependencies": {
+    "loan": "0.0.2"
+  }
+}
