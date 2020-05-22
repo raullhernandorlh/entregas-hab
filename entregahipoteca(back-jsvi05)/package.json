@@ -4,7 +4,8 @@
   "description": "Calculo Amortizacion Hipoteca",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "browser-sync start --server 'www' --files 'www'"
   },
   "keywords": [
     "hipoteca",
@@ -13,6 +14,10 @@
   "author": "Raul Lopez Hernando",
   "license": "ISC",
   "dependencies": {
-    "loan": "0.0.2"
+    "loan": "0.0.2",
+    "yargs": "^15.3.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.7"
   }
 }
