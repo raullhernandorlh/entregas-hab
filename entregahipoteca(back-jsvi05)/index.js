@@ -66,7 +66,7 @@ console.log("-------------------------");
 let amortizacion =
 {
     precio_inmueble : loan.principal,
-    inmueble_mas_intereses : (loan.principal + loan.amortize().data.total_cost).toFixed(2),
+    inmueble_mas_intereses : (loan.principal + loan.amortize().data.total_cost),
     mensualidades : loan.instalments,
     tipo_plazo : loan.pay_every,
     tipo_interes : loan.amortize().interest_rate * 100 + " %",
@@ -74,7 +74,7 @@ let amortizacion =
     pago_mensual : loan.amortize().to_pay.toFixed(2),
     amortizacion : loan.amortize().amortization.toFixed(2),
     intereses_mensuales : loan.amortize().interest.toFixed(2),
-    intereses_totales : loan.amortize().data.total_cost.toFixed(2),
+    intereses_totales : loan.amortize().data.total_cost,
 }
 
 
