@@ -34,6 +34,7 @@ EL cliente necesitara una APIRest para añadir eventos y poder obtener una lista
 El objetivo del ejercicio traducir los requisitos a una descripción
 técnica, esto es, decidir qué endpoints hacen falta, qué parámetros y cuáles 
 son los código de error a devolve
+EXTRAS( DELETE, UPDATE y PATCH)
 
 
 
