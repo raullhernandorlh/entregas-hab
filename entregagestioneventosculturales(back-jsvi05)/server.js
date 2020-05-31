@@ -1,3 +1,25 @@
+/**
+ * Un cliente nos pide realizar un sistema para gestionar eventos culturales.
+ * Necesita dar de alta eventos, que pueden ser de tipo 'concierto', 'teatro' o 
+ * 'monólogo'. Cada uno se caracteriza por un 'nombre', 'aforo' y 'artista'.
+ * Opcionalmente pueden incluir una descripción.
+ * 
+ * El cliente necesitará una API REST para añadir eventos y poder obtener
+ * una lista de los existentes.
+ * 
+ * El objetivo del ejercicio es que traduzcas estos requisitos a una descripción
+ * técnica, esto es, decidir qué endpoints hacen falta, qué parámetros y cuáles 
+ * son los código de error a devolver
+ * 
+ * Notas:
+ *    - el conocimiento necesario para realizarlo es el adquirido hasta la clase del
+ *      miércoles
+ *    - llega con un endpoint GET y otro POST
+ *    - el almacenamiento será en memoria, por tanto cuando se cierre el servidor
+ *      se perderán los datos. De momento es aceptable esto.
+ * 
+ */
+
 const bodyParser = require('body-parser');
 const express = require('express');
 
@@ -16,6 +38,10 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Global Id(Used to delete, update multiple records or a specific record)
+
+let globalId = 1;
+
 // Cultural events (Object with all collections)
 
 let culturalEvents = {
@@ -24,7 +50,7 @@ let culturalEvents = {
   'monologues': [],
 }
 
-// Looking for all types of cultural events
+// GET (Looking for all types of cultural events)
 
 app.get('/culturalevents', (req, res) => {
   res.json(Object.keys(culturalEvents));
@@ -39,9 +65,6 @@ app.get('/culturalevents', (req, res) => {
 
 app.post('/culturalevents', (req, res) => {
   const eventName = req.body.name;
-
-  // TODO Preguntar duda a Andres porque me detecta que el evento esta creado pero
-  // no me manda el fallo 
 
   if (eventName !== undefined) {
     culturalEvents[eventName] = [];
@@ -60,52 +83,50 @@ app.post('/culturalevents', (req, res) => {
 })
 
 
-// Creating events
+// POST (Creating events)
+// Name of body parameters : name, capacity, artist, description
 
 app.post('/culturalevents/:event', (req, res) => {
+
   let eventParamsName = req.params.event;
-  // let eventBodyName = req.body.name;
-  // let eventBodyCapacity = req.body.capacity;
-  // let eventBodyArtist = req.body.artist;
-  // let eventBodyDescription = req.body.description;
-
-  // TODO: comprobar si el tipo de evento existe (404)
-  // TODO: comprobar si alguno de los parametros del body esta correctamente insertado(404)
-  // TODO : comprobar si el nombre del evento existe 
+  let eventBodyName = req.body.name;
+  let eventBodyCapacity = req.body.capacity;
+  let eventBodyArtist = req.body.artist;
+  let eventBodyDescription = req.body.description;
 
 
-  // if (eventBodyName !== undefined || eventBodyCapacity !== undefined
-  //   || eventBodyArtist !== undefined || eventBodyDescription !== undefined) {
-  //   let data = {
-  //     name: req.body.name,
-  //     capacity: req.body.capacity,
-  //     artist: req.body.artist,
-  //     datos: {
-  //       description: req.body.description
-  //     }
-  //   }
-  //   culturalEvents[eventParamsName].push(data);
-  //   res.send();
-  // } else {
-  //   res.status(404).send({ error: 'ERROR!! One or more body parameters are not inserted correctly ' });
-  // }
 
-  if (eventParamsName !== undefined) {
-    let data = {
-      name: req.body.name,
-      capacity: req.body.capacity,
-      artist: req.body.artist,
-      datos: {
-        description: req.body.description
-      }
-    }
-    culturalEvents[eventParamsName].push(data);
-    listingculturalevents = culturalEvents.map((events)=>console.log(events))
-    res.send();
+  if (eventBodyName === undefined || eventBodyCapacity === undefined
+    || eventBodyArtist === undefined || eventBodyDescription === undefined) {
 
-  } else {
-    res.status(404).send();
+    res.status(404).send({ error: 'ERROR!! One or more body parameters are not inserted correctly ' });
+    return
   }
+
+  if (eventParamsName === undefined) {
+    res.status(404).send({ error: 'ERROR!! The event is not defined' });
+    return
+  }
+
+  let data = {
+    id: globalId++,
+    name: req.body.name,
+    capacity: req.body.capacity,
+    artist: req.body.artist,
+    datos: {
+      description: req.body.description
+    }
+  }
+
+  for (let event of culturalEvents[eventParamsName]) {
+    if (event.name === data.name) {
+      res.status(409).send("Duplicate Event");
+      return
+    }
+  }
+  culturalEvents[eventParamsName].push(data);
+  res.send();
+
 
 })
 
@@ -115,6 +136,100 @@ app.get('/culturalevents/:event', (req, res) => {
   let eventName = req.params.event;
   res.json(culturalEvents[eventName]);
 })
+
+
+// Delete .Deleting Events (EXTRA)
+
+app.delete('/culturalevents/:event/:id', (req, res) => {
+  const eventName = req.params.event;
+
+  //You have to parse the id that enters as a paramete
+  const id = parseInt(req.params.id);
+
+  if (culturalEvents[eventName] === undefined) {
+    res.status(404).send();
+    return;
+  }
+
+  if (culturalEvents[eventName].find(event => event.id === id) === undefined) {
+    res.status(404).send();
+    return;
+  }
+
+  culturalEvents[eventName] = culturalEvents[eventName].filter( event => event.id !== id);
+
+  res.send();
+});
+
+
+// UPDATE (Updating Cultural Events) extra
+
+app.put('/culturalevents/:event/:id', (req, res) => {
+  const eventName = req.params.event;
+
+  // When we generated the ID it was an integer, but in the URL comes as a chain
+  const id = parseInt(req.params.id);
+
+  if (culturalEvents[eventName] === undefined) {
+    res.status(404).send({ error: 'ERROR!! The event is not defined' });
+    return;
+  }
+
+  if (req.body.name === undefined ||
+    req.body.capacity === undefined ||
+    req.body.artist === undefined ||
+    req.body.description === undefined) {
+      res.status(400).send({"ERROR !!!One or more parameters of the body are not defined"});
+      return;
+    }
+
+  let searchedElement = culturalEvents[eventName].find(event=> event.id === id);
+  if (searchedElement === undefined) {
+    res.status(404).send({ error: 'ERROR!! The event is not defined' });
+    return;
+  }
+
+  searchedElement.name = req.body.name;
+  searchedElement.capacity = req.body.capacity;
+  searchedElement.artist = req.body.artist;
+  searchedElement.description = req.body.description;
+
+  res.send();
+});
+
+// PATCH (We update one or more records of an event) (EXTRA)
+
+app.patch('/culturalevents/:event/:id', (req, res) => {
+  const eventName = req.params.event;
+
+  // When we generated the ID it was an integer, but in the URL comes as a chain
+  const id = parseInt(req.params.id);
+
+  if (culturalEvents[eventName] === undefined) {
+    res.status(404).send();
+    return;
+  }
+
+  let searchedElement = culturalEvents[eventName].find(event => event.id === id);
+  if (searchedElement === undefined) {
+    res.status(404).send({ error: 'ERROR!! The event is not defined' });
+    return;
+  }
+
+  const bodyParams = Object.keys(req.body);
+
+  for (let param of bodyParams) {
+    searchedElement[param] = req.body[param];
+  }
+
+//  Object.keys(req.body).forEach(key => {
+//    searchedElement[key] = req.body[key];
+//  })
+
+  res.send();
+});
+
+
 
 app.listen(8000);
 
