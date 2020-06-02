@@ -18,18 +18,16 @@ const photos = [{
 ];
 
 
-
-const namePhotosPablo = photos.map(function(photo){
-
-    for (let people of photo.people){
-        if(people === 'Pablo'){
+photosOfPablo = photos.filter((photo) => {
+    for(let i = 0 ; i <photos.length; i++){
+        if(photo.people[i] === 'Pablo'){
             return photo.name
         }
     }
 })
-  
 
-console.log(namePhotosPablo);
+
+console.log(photosOfPablo);
 
 
   
