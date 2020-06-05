@@ -1,4 +1,4 @@
-### Ejercicios para entregar
+### EJERCICOS PARA ENTREGAR
 
 ###### entrega
 Entrega de css Hoteles
@@ -21,7 +21,7 @@ Ejercicio peticion API. Resuelto con axios y then
 
 
 
-### EJERCICIOS BACKEND PARTE 2 (back-jsvi05)
+##### EJERCICIOS BACKEND PARTE 2 (back-jsvi05)
 
 
 ###### entregahipoteca(back-jsvi05)
