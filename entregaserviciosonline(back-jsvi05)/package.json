@@ -1,0 +1,30 @@
+{
+  "name": "serviciosonline",
+  "version": "0.0.1",
+  "description": "Tienda Servicios Online. Añadir, Modificar y Listar Productos (No permite crear usuarios. Usuario admin precreado)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "servicios_online",
+    "express",
+    "morgan",
+    "axios",
+    "config",
+    "dotenv",
+    "winston",
+    "morgan"
+  ],
+  "author": "Raul Lopez Hernando",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "config": "^3.3.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "morgan": "^1.10.0",
+    "winston": "^3.2.1"
+  }
+}
