@@ -45,7 +45,7 @@ Tienda que quiere ofrecer sus servicios online. Realizar parte backend para aña
 
 ### EJERCICIO SQL (MOD6-SQL)
 
-###### reserva_antpanedemia
+###### reserva_antipandemia
 
 Ejercicio de SQL en el que dado un enununciado se crea el modelo_entidad_relacion con el programa de dibujo para linux "yed" para posteriormente crear el modelo_relacional ayudandonos
 de "MySQL Workbench"
