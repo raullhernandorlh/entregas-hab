@@ -1,18 +1,24 @@
 require('dotenv').config()
 const bcrypt = require('bcrypt');
+const validator = require('validator');
 
-const password = process.argv[2]
+const password = process.argv[2];
+const email = process.argv[3];
 
-let admin = {
-    user: "admin",
-    email: "admin@gmail.com",
-    password: password
+if(!validator.isEmail(email)){
+    console.log("El valor introducido no es un email");
+    return;
 }
 
+    let admin = {
+        user: "admin",
+        email: email,
+        password: password
+    }
 
 let hashThePassword = async () => {
 
-    if (process.argv.length !== 3) {
+    if (process.argv.length !== 4) {
         console.log('Falta un parámetro');
         return;
     }

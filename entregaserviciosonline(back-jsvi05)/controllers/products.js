@@ -1,3 +1,5 @@
+const validator = require('validator');
+
 let products = [];
 
 let id = 1;
@@ -19,7 +21,21 @@ const list = (req, res) => {
 }
 
 const add = (req, res) => {
-  // TODO: validar los valores recibidos
+  
+  const name = req.body.name;
+  const stock = req.body.name;
+  const price = req.body.price;
+
+  if(name === undefined || stock === undefined || price === undefined){
+    res.status(400).send();
+    return;
+  }
+
+  if (validator.isNumber(name) || validator.isString(stock) || validator.isString(price)){
+    console.log("One of more of the objects values do not have the appropiate values")
+    return;
+  }
+
 
   products.push({
     id: id++,
@@ -34,16 +50,15 @@ const add = (req, res) => {
 
 const put = (req, res) => {
 
-  //TODO Validar los valores recibidos
-
-  console.log(req.params);
   let { id } = req.params;
   id = parseInt(id);
-  console.log(id);
+  
+  const name = req.body.name;
+  const stock = req.body.stock;
+  const price = req.body.price;
 
-  if (req.body.name === undefined ||
-    req.body.stock === undefined ||
-    req.body.price === undefined) {
+
+  if (name === undefined || stock === undefined || price === undefined) {
     res.status(400).send();
     return;
   }
@@ -54,9 +69,9 @@ const put = (req, res) => {
     return;
   }
 
-  searchedElement.name = req.body.name;
-  searchedElement.stock = req.body.stock;
-  searchedElement.price = req.body.price;
+  searchedElement.name = name;
+  searchedElement.stock = stock;
+  searchedElement.price = price;
 
   res.send();
 };

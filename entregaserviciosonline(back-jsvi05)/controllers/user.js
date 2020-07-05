@@ -1,22 +1,14 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const mock = require ('../mock');
+const mock = require ('../hashPassword');
 
 
 const login = async (req,res) => {
 
-    // IMPORTANTE !! No necesito coger el email porque no voy a comprobar si esta metido. 
-    // Porque ya esta metido desde el principio
-    console.log(req.body)
     const {password} = req.body;  
 
     // Me vienen estos datos de la funcion creada en index.js "hashThePassword"
-    
-    const getEmail= (await mock.hashThePassword()).email;
     const hashPassword = (await mock.hashThePassword()).password;
-    console.log(hashPassword);
-
-
     const passwordIsvalid = await bcrypt.compare(password, hashPassword);
 
     if (!passwordIsvalid) {

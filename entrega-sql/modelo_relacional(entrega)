@@ -1,0 +1,4 @@
+-- usuarios(#id,nombre,apellidos,contrasena,direccion,role,email)
+-- reservas(#id,codigo_reserva,duracion_reserva,precio,fecha_reserva,-id_restaurante,-id_usuario)
+-- restaurante(#id,nombre,direccion,capacidad_maxima)
+-- usuario_reserva_acompaña(#id,-id_usuario,-id_reserva)

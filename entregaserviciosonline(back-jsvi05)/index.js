@@ -29,13 +29,10 @@
 //Imported libraries
 
 require('dotenv').config()
-const axios = require('axios');
 const bodyParser = require('body-parser');
 const express = require('express');
-const winston = require('winston');
 const morgan = require('morgan');
 const cors = require('cors');
-const bcrypt = require('bcrypt');
 
 const app = express();
 
@@ -66,7 +63,6 @@ app.post('/product/add',isAuthenticated, add);
 app.get('/product/list/', list);
 
 app.put('/product/update/:id',isAuthenticated,put);
-
 
 // Custom error messages
 
