@@ -50,6 +50,17 @@ Tienda que quiere ofrecer sus servicios online. Realizar parte backend para aña
 Ejercicio de SQL en el que dado un enununciado se crea el modelo_entidad_relacion con el programa de dibujo para linux "yed" para posteriormente crear el modelo_relacional ayudandonos
 de "MySQL Workbench"
 
+### EJERCICIOS FRONTEND (VUE.JS) (MOD7-VUEJS-5VI)
+
+###### hackamusic
+
+Ejercicio de VUE consistente en crear una aplicacion utilizando el framework de Javascript (Vue). En dicha aplicacion denominada ("Hackamusic") se recogen los datos de una API externa con la ayuda de la libreria "Axios" y una vez recogidos con ayuda de Javascript Vainilla (javascript puro) actuamos sobre estos para poder modidficarlos y mostrarlos con la ayuda del framework de Vue. Es importante recalcar que Vue tiene que correr sobre Nodejs el cual nos hace de parte servidora (backend). Aparte de la libreria de "axios", utilizamos las librerias de "sweetalert2" (mostrar las alertas y notificaciones de la app de una forma mas
+visual), "vue-headful" (sirve para poner cambiar dinamicamente los titulos de cada proyecto) y por ultimo "CSS Loader Spinner" (para crear una animación de"loading" mientras los datos de la API van cargando en la vista.).
+
+###### hackmarket
+
+Ejercicio de VUE consistente en crear una aplicacion utilizando el framewok de Javascript (Vue). En dicha aplicacion denomionada ("Hackamarket") creamos dos bases de datos para almacenar datos de "clientes" y "productos". Con la ayuda de la libreria de "Axios y una serie de endpoints podemos borar actualizar y eliminar clientes asi como agregar productos. Para poder realizar el proyecto hemos utilizado las librerias axios, vue-headful , cors ....
+
 
 
 
