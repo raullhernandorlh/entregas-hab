@@ -126,11 +126,12 @@ methods:{
             password: self.updatedPassword
         })
         .then(function(response) {
-            this.sweetAletConfirmUpdate();
+            
         })
         .catch(function(error){
             this.sweetAlertConfirmDelete();
         })
+        this.sweetAletConfirmUpdate();
     },
 
     // Metodo para la MOSTRAR de los datos de los CLIENTES
@@ -155,6 +156,7 @@ methods:{
         axios.get("http://localhost:3050/clients/")
         .then(function(response){
             self.clients = response.data;
+            console.log(response)
         })
         .catch(function(error){
             console.log(error);

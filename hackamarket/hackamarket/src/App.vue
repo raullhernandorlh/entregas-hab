@@ -1,45 +1,21 @@
 <template>
   <div id="app">
-    <!-- Menu utilizado para tamaños grandes de pantalla -->
-    <div id="nav">
-      <router-link :to='{name:"Home"}'><img src="./assets/logo/hackamarket_logo.png" /></router-link>
-      <router-link :to='{name:"Home"}'>Home</router-link>
-      <router-link :to='{name:"Products"}'>Products</router-link>
-      <router-link :to='{name:"Clients"}'>Clients</router-link>
-      <router-link :to='{name:"Register"}'>Register</router-link>
-      <router-link :to='{name:"About"}'>About</router-link>
-    </div>
-
-    <!-- Menu utilizado para tamaños pequeños de pantalla. Movil ... -->
-    <div id="mobile-nav" v-show="seeModal">
-      <router-link :to='{name:"Home"}'>Home</router-link>
-      <router-link :to='{name:"Products"}'>Products</router-link>
-      <router-link :to='{name:"Clients"}'>Clients</router-link>
-      <router-link :to='{name:"Register"}'>Register</router-link>
-      <router-link :to='{name:"About"}'>About</router-link>
-    </div>
-    <!-- Boton para menu desplegable y vertical del modo movil -->
-      <div class="menu-btn">
-      <button @click="seeModal =! seeModal"><fa-icon :icon="['fas','bars']" size="2x" /></button>
-    </div>
+    <menucustom/>
     <router-view />
     <footercustom />
   </div>
 </template>
 
 <script>
+import menucustom from '@/components/MenuCustom.vue'
 import footercustom from '@/components/FooterCustom.vue'
 
 export default {
   name:"App",
   components:{
-    footercustom,
+    menucustom,
+    footercustom
   },
-  data(){
-    return{
-    seeModal:false
-    }
-  }
 }
 </script>
 <style>

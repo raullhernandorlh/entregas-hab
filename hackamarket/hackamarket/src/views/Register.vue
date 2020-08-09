@@ -95,7 +95,7 @@ return{
             name: self.name,
             email: self.email,
             username:self.username,
-            pasword:self.password,
+            password:self.password,
             
           })
           .then(function (response) {
